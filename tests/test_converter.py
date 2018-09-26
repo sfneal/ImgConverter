@@ -8,7 +8,7 @@ directory = os.path.join(os.path.dirname(__file__), 'data')
 destination = os.path.join(directory, 'converted')
 if os.path.exists(destination):
     shutil.rmtree(destination)
-    os.mkdir(destination)
+os.mkdir(destination)
 
 
 class TestConverter(unittest.TestCase):
