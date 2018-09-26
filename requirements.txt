@@ -1,0 +1,16 @@
+docopt==0.6.2
+looptools==1.0.2
+pdfconduit==1.6.1
+pdfconduit-convert==1.0.0
+pdfconduit-modify==1.0.0
+pdfconduit-utils==1.0.2
+pdfrw==0.4
+Pillow==5.2.0
+psd-tools==1.4
+psdconvert==0.1.4
+PyBundle==1.0.5
+PyMuPDF==1.13.20
+PyPDF3==1.0.1
+PySimpleGUI==3.8.1
+reportlab==3.5.8
+tqdm==4.26.0
