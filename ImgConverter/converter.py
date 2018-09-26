@@ -7,7 +7,7 @@ from ImgConverter.jpg2png import jpg2png
 
 class Convert2Image:
     def __init__(self, target_directory, target_ext='.png'):
-        self.dst_path = target_directory if os.path.isdir(target_directory) else os.path.dirname(target_directory)
+        self.dst_path = target_directory
         self.dst_ext = target_ext
 
     def convert(self, source):
