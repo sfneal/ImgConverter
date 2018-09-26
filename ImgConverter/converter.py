@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from psdconvert import ConvertPSD
 from pdf.convert import pdf2img
+from ImgConverter.jpg2png import jpg2png
 
 
 class Convert2Image:
@@ -27,3 +28,7 @@ class Convert2Image:
         # PDF ---> PNG
         elif src_ext == '.pdf':
             return pdf2img(source, tempdir=self.dst_path, ext=self.dst_ext)
+
+        # JPG ---> PNG
+        elif src_ext == '.jpg':
+            return [jpg2png(source, target)]
