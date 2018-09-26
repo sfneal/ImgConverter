@@ -1,0 +1,10 @@
+MANIFEST.in
+setup.py
+ImgConverter/__init__.py
+ImgConverter/converter.py
+ImgConverter/jpg2png.py
+ImgConverter.egg-info/PKG-INFO
+ImgConverter.egg-info/SOURCES.txt
+ImgConverter.egg-info/dependency_links.txt
+ImgConverter.egg-info/requires.txt
+ImgConverter.egg-info/top_level.txt
