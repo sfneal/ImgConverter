@@ -2,9 +2,9 @@ from setuptools import setup, find_packages
 
 setup(
     name='ImgConverter',
-    version='1.0.0',
+    version='1.0.1',
     packages=find_packages(),
-    install_requies=[
+    install_requires=[
         'psdconvert',
         'pdfconduit-convert'
     ],
