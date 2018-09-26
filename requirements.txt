@@ -7,7 +7,7 @@ pdfconduit-utils==1.0.2
 pdfrw==0.4
 Pillow==5.2.0
 psd-tools==1.4
-psdconvert==0.1.4
+psdconvert==0.1.5
 PyBundle==1.0.5
 PyMuPDF==1.13.20
 PyPDF3==1.0.1
