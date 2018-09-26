@@ -18,15 +18,12 @@ class Convert2Image:
         src_ext = Path(os.path.basename(source)).suffix
 
         # Target file path
-        target = os.path.join(self.dst_path, src_name + src_ext)
+        target = os.path.join(self.dst_path, src_name + self.dst_ext)
 
         # PSD ---> PNG
-        if src_ext == 'psd':
-            ConvertPSD(source).save(target)
+        if src_ext == '.psd':
+            return [ConvertPSD(source).save(target)]
 
         # PDF ---> PNG
-        elif src_ext == 'pdf':
-            pdf2img(source, ext=self.dst_ext, progress_bar='tqdm')
-
-        if os.path.exists(target):
-            return target
+        elif src_ext == '.pdf':
+            return pdf2img(source, tempdir=self.dst_path, ext=self.dst_ext)
