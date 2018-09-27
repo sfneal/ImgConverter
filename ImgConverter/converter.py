@@ -1,6 +1,7 @@
 import os
+from shutil import rmtree
 from pathlib import Path
-from tempfile import NamedTemporaryFile
+from tempfile import NamedTemporaryFile, mkdtemp
 from psdconvert import ConvertPSD
 from pdf.convert import pdf2img
 from ImgConverter.jpg2png import jpg2png
@@ -10,6 +11,10 @@ class Convert2Image:
     def __init__(self, dst_directory=None, convert_to='png'):
         self._dst_dir = dst_directory
         self._dst_ext = '.' + convert_to.strip('.')
+        self._tempdir = None
+
+    def cleanup(self):
+        rmtree(self._tempdir)
 
     @staticmethod
     def name_ext(source):
@@ -29,11 +34,13 @@ class Convert2Image:
 
         else:
             # Create a temporary destination
-            return NamedTemporaryFile(suffix=self._dst_ext).name
+            if self._tempdir is None:
+                self._tempdir = mkdtemp()
+            return NamedTemporaryFile(dir=self._tempdir, suffix=self._dst_ext).name
 
     def convert(self, source):
         """Convert a .jpg, .psd, .pdf or .png to another format"""
-        # Source file name without extension and file extension tupe
+        # Source file name without extension and file extension tup
         src_name, src_ext = self.name_ext(source)
 
         # Target file path
