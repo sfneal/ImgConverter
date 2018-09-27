@@ -43,7 +43,7 @@ class Convert2Image:
             # Create a temporary destination
             if self._tempdir is None:
                 self._tempdir = mkdtemp()
-            return NamedTemporaryFile(dir=self._tempdir, suffix=self._dst_ext).name
+            return os.path.join(self._tempdir, src_name + self._dst_ext)
 
     def get_output(self, source):
         """
