@@ -1,7 +1,7 @@
 import os
 from shutil import rmtree
 from pathlib import Path
-from tempfile import NamedTemporaryFile, mkdtemp
+from tempfile import mkdtemp
 from psdconvert import ConvertPSD
 from pdf.convert import pdf2img
 from ImgConverter.jpg2png import jpg2png
