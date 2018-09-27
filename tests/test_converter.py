@@ -13,21 +13,21 @@ os.mkdir(destination)
 
 class TestConverter(unittest.TestCase):
     def test_pdf2png(self):
-        pdf = os.path.join(directory, 'charts.pdf')
+        pdf = os.path.join(directory, 'pdf.pdf')
         new_imgs = Convert2Image(destination).convert(pdf)
 
         for img in new_imgs:
             self.assertTrue(os.path.exists(img))
 
     def test_psd2png(self):
-        psd = os.path.join(directory, 'plan.psd')
+        psd = os.path.join(directory, 'psd.psd')
         new_psds = Convert2Image(destination).convert(psd)
 
         for img in new_psds:
             self.assertTrue(os.path.exists(img))
 
     def test_jpg2png(self):
-        jpg = os.path.join(directory, 'photo.jpg')
+        jpg = os.path.join(directory, 'jpg.jpg')
         new_jpgs = Convert2Image(destination).convert(jpg)
 
         for img in new_jpgs:
