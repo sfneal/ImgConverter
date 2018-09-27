@@ -27,7 +27,7 @@ class Convert2Image:
         s = Path(os.path.basename(source))
         return s.stem, s.suffix
 
-    def _get_target(self, src_name):
+    def get_target(self, src_name):
         """
         Retrieve the target file_path
 
@@ -50,7 +50,7 @@ class Convert2Image:
         src_name, src_ext = self._get_name_ext(source)
 
         # Target file path
-        target = self._get_target(src_name)
+        target = self.get_target(src_name)
 
         # No conversion needed
         if src_ext == self._dst_ext:
