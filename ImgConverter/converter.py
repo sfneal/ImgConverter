@@ -20,6 +20,7 @@ class Convert2Image:
 
         # Target file path
         target = os.path.join(self.dst_path, src_name + self.dst_ext)
+        print(target)
 
         # PSD ---> PNG
         if src_ext == '.psd':
@@ -27,7 +28,7 @@ class Convert2Image:
 
         # PDF ---> PNG
         elif src_ext == '.pdf':
-            return pdf2img(source, tempdir=self.dst_path, ext=self.dst_ext)
+            return pdf2img(source, output=target, ext=self.dst_ext)
 
         # JPG ---> PNG
         elif src_ext == '.jpg':
