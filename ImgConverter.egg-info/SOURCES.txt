@@ -3,6 +3,7 @@ setup.py
 ImgConverter/__init__.py
 ImgConverter/_version.py
 ImgConverter/converter.py
+ImgConverter/dummy.py
 ImgConverter/jpg2png.py
 ImgConverter.egg-info/PKG-INFO
 ImgConverter.egg-info/SOURCES.txt
