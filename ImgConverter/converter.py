@@ -17,7 +17,7 @@ class Convert2Image:
         rmtree(self._tempdir)
 
     @staticmethod
-    def name_ext(source):
+    def _get_name_ext(source):
         """
         Get file name and file extension from a source file
 
@@ -27,7 +27,13 @@ class Convert2Image:
         s = Path(os.path.basename(source))
         return s.stem, s.suffix
 
-    def get_target(self, src_name):
+    def _get_target(self, src_name):
+        """
+        Retrieve the target file_path
+
+        Returns either a tempfile in a tempdir or a concatenated
+        file path in the same directory as the source file
+        """
         if self._dst_dir and os.path.isdir(self._dst_dir):
             # Concatenate destination
             return os.path.join(self._dst_dir, src_name + self._dst_ext)
@@ -41,10 +47,10 @@ class Convert2Image:
     def convert(self, source):
         """Convert a .jpg, .psd, .pdf or .png to another format"""
         # Source file name without extension and file extension tup
-        src_name, src_ext = self.name_ext(source)
+        src_name, src_ext = self._get_name_ext(source)
 
         # Target file path
-        target = self.get_target(src_name)
+        target = self._get_target(src_name)
 
         # No conversion needed
         if src_ext == self._dst_ext:
