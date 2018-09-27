@@ -5,6 +5,7 @@ from tempfile import mkdtemp
 from psdconvert import ConvertPSD
 from pdf.convert import pdf2img
 from ImgConverter.jpg2png import jpg2png
+from ImgConverter.dummy import dummy_img
 
 
 class Convert2Image:
@@ -81,5 +82,4 @@ class Convert2Image:
 
         # Cannot convert this file type
         else:
-            print('ImgConverter error: unsupported file type (' + src_ext + ')')
-            print('File path         :', source, '\n')
+            return dummy_img(source, target)
