@@ -66,7 +66,7 @@ class Convert2Image:
 
         # No conversion needed
         if src_ext == self._dst_ext:
-            return source
+            return [source]
 
         # PSD ---> PNG
         elif src_ext == '.psd':
