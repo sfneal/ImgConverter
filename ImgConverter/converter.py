@@ -7,7 +7,7 @@ from ImgConverter.jpg2png import jpg2png
 
 
 class Convert2Image:
-    def __init__(self, convert_to='png', dst_directory=None):
+    def __init__(self, dst_directory=None, convert_to='png'):
         self._dst_dir = dst_directory
         self._dst_ext = '.' + convert_to.strip('.')
 
@@ -23,7 +23,7 @@ class Convert2Image:
         return s.stem, s.suffix
 
     def get_target(self, src_name):
-        if os.path.isdir(self._dst_dir):
+        if self._dst_dir and os.path.isdir(self._dst_dir):
             # Concatenate destination
             return os.path.join(self._dst_dir, src_name + self._dst_ext)
 
