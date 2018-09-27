@@ -4,10 +4,10 @@ from PIL import Image, ImageDraw
 
 
 def dummy_img(source, target):
-    astr = "ImgConverter error: unsupported file type " + os.path.basename(source)
+    astr = "ImgConverter error: unsupported file type\n" + os.path.basename(source)
     para = textwrap.wrap(astr, width=15)
 
-    MAX_W, MAX_H = 200, 200
+    MAX_W, MAX_H = 400, 600
     im = Image.new('RGB', (MAX_W, MAX_H), (0, 0, 0, 0))
     draw = ImageDraw.Draw(im)
 
