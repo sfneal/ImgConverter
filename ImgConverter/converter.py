@@ -6,9 +6,10 @@ from ImgConverter.jpg2png import jpg2png
 
 
 class Convert2Image:
-    def __init__(self, dst_directory, convert_to='png'):
+    def __init__(self, dst_directory, convert_to='png', tempdir=False):
         self._dst_dir = dst_directory
         self._dst_ext = '.' + convert_to.strip('.')
+        self._tempdir = tempdir
 
     def convert(self, source):
         """Convert a .jpg, .psd, .pdf or .png to another format"""
@@ -20,10 +21,13 @@ class Convert2Image:
 
         # Target file path
         target = os.path.join(self._dst_dir, src_name + self._dst_ext)
-        print(target)
+
+        # No conversion needed
+        if src_ext == self._dst_ext:
+            return source
 
         # PSD ---> PNG
-        if src_ext == '.psd':
+        elif src_ext == '.psd':
             return [ConvertPSD(source).save(target)]
 
         # PDF ---> PNG
@@ -33,3 +37,8 @@ class Convert2Image:
         # JPG ---> PNG
         elif src_ext == '.jpg':
             return [jpg2png(source, target)]
+
+        # Cannot convert this file type
+        else:
+            print('ImgConverter error: unsupported file type (' + src_ext + ')')
+            print('File path         :', source, '\n')
