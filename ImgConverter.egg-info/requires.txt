@@ -1,2 +1,2 @@
 psdconvert>=0.1.5
-pdfconduit-convert>-1.1.0
+pdfconduit-convert>=1.1.0
