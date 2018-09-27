@@ -6,9 +6,9 @@ from ImgConverter.jpg2png import jpg2png
 
 
 class Convert2Image:
-    def __init__(self, target_directory, target_ext='.png'):
-        self.dst_path = target_directory
-        self.dst_ext = target_ext
+    def __init__(self, dst_directory, convert_to='png'):
+        self._dst_dir = dst_directory
+        self._dst_ext = '.' + convert_to.strip('.')
 
     def convert(self, source):
         """Convert a .jpg, .psd, .pdf or .png to another format"""
@@ -19,7 +19,7 @@ class Convert2Image:
         src_ext = Path(os.path.basename(source)).suffix
 
         # Target file path
-        target = os.path.join(self.dst_path, src_name + self.dst_ext)
+        target = os.path.join(self._dst_dir, src_name + self._dst_ext)
         print(target)
 
         # PSD ---> PNG
@@ -28,7 +28,7 @@ class Convert2Image:
 
         # PDF ---> PNG
         elif src_ext == '.pdf':
-            return pdf2img(source, output=target, ext=self.dst_ext)
+            return pdf2img(source, output=target, ext=self._dst_ext)
 
         # JPG ---> PNG
         elif src_ext == '.jpg':
