@@ -73,7 +73,7 @@ class Convert2Image:
 
         # PDF ---> PNG
         elif src_ext == '.pdf':
-            return pdf2img(source, output=target, ext=self._dst_ext)
+            return pdf2img(source, output=target)
 
         # JPG ---> PNG
         elif src_ext == '.jpg':
