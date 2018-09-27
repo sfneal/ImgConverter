@@ -25,9 +25,10 @@ class Convert2Image:
         :return: file_name, file_ext
         """
         s = Path(os.path.basename(source))
+        # Source file name without extension and file extension tup
         return s.stem, s.suffix
 
-    def get_target(self, src_name):
+    def _get_target(self, src_name):
         """
         Retrieve the target file_path
 
@@ -44,13 +45,23 @@ class Convert2Image:
                 self._tempdir = mkdtemp()
             return NamedTemporaryFile(dir=self._tempdir, suffix=self._dst_ext).name
 
+    def get_output(self, source):
+        """
+        Get the output file path for a source file to-be converted
+
+        :param source: Source file path
+        :return: Destination file path
+        """
+        src_name, src_ext = self._get_name_ext(source)
+        return self._get_target(src_name)
+
     def convert(self, source):
         """Convert a .jpg, .psd, .pdf or .png to another format"""
         # Source file name without extension and file extension tup
         src_name, src_ext = self._get_name_ext(source)
 
         # Target file path
-        target = self.get_target(src_name)
+        target = self._get_target(src_name)
 
         # No conversion needed
         if src_ext == self._dst_ext:
