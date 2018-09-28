@@ -13,10 +13,10 @@ class Convert2Image:
         self._dst_dir = dst_directory
         self._dst_ext = '.' + convert_to.strip('.')
         self.ignored_types = self._set_ignored_types(ignored_types)
-        self._tempdir = None
+        self.tempdir = None
 
     def cleanup(self):
-        rmtree(self._tempdir)
+        rmtree(self.tempdir)
 
     @staticmethod
     def _set_ignored_types(ignored_types):
@@ -53,9 +53,9 @@ class Convert2Image:
 
         else:
             # Create a temporary destination
-            if self._tempdir is None:
-                self._tempdir = mkdtemp()
-            return os.path.join(self._tempdir, src_name + self._dst_ext)
+            if self.tempdir is None:
+                self.tempdir = mkdtemp()
+            return os.path.join(self.tempdir, src_name + self._dst_ext)
 
     def get_output(self, source):
         """
