@@ -9,13 +9,24 @@ from ImgConverter.dummy import dummy_img
 
 
 class Convert2Image:
-    def __init__(self, dst_directory=None, convert_to='png'):
+    def __init__(self, dst_directory=None, convert_to='png', ignored_types=None):
         self._dst_dir = dst_directory
         self._dst_ext = '.' + convert_to.strip('.')
+        self.ignored_types = self._set_ignored_types(ignored_types)
         self._tempdir = None
 
     def cleanup(self):
         rmtree(self._tempdir)
+
+    @staticmethod
+    def _set_ignored_types(ignored_types):
+        """Create list of ignored file types"""
+        if isinstance(ignored_types, list):
+            return ['.' + t.strip('.') for t in ignored_types]
+        elif isinstance(ignored_types, str):
+            return ['.' + ignored_types.strip('.')]
+        else:
+            return [None]
 
     @staticmethod
     def _get_name_ext(source):
@@ -69,15 +80,15 @@ class Convert2Image:
             return [source]
 
         # PSD ---> PNG
-        elif src_ext == '.psd':
+        elif src_ext == '.psd' and src_ext not in self.ignored_types:
             return [ConvertPSD(source).save(target)]
 
         # PDF ---> PNG
-        elif src_ext == '.pdf':
+        elif src_ext == '.pdf' and src_ext not in self.ignored_types:
             return pdf2img(source, output=target)
 
         # JPG ---> PNG
-        elif src_ext == '.jpg':
+        elif src_ext == '.jpg' and src_ext not in self.ignored_types:
             return [jpg2png(source, target)]
 
         # Cannot convert this file type
