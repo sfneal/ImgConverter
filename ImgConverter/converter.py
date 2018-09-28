@@ -102,4 +102,5 @@ class Convert2Image:
 
         # Cannot convert this file type
         else:
+            print('Cannot convert', source)
             return None
