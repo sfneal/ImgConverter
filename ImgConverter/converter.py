@@ -2,10 +2,19 @@ import os
 from shutil import rmtree
 from pathlib import Path
 from tempfile import mkdtemp
+from PIL import Image
 from psdconvert import ConvertPSD
 from pdf.convert import pdf2img
-from ImgConverter.jpg2png import jpg2png
-from ImgConverter.dummy import dummy_img
+
+
+def jpg2png(source, destination):
+    """Convert a JPG image to a PNG image."""
+    assert Path(source).suffix == '.jpg'
+    assert Path(destination).suffix == '.png'
+
+    with Image.open(source) as im:
+        im.save(destination)
+    return destination
 
 
 class Convert2Image:
