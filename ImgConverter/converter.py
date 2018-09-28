@@ -102,4 +102,4 @@ class Convert2Image:
 
         # Cannot convert this file type
         else:
-            return [dummy_img(source, target)]
+            return None
