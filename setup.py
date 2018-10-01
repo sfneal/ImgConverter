@@ -16,7 +16,7 @@ setup(
     version=verstr,
     packages=find_packages(),
     install_requires=[
-        'psdconvert>=0.1.7',
+        'psdconvert>=0.1.8',
         'pdfconduit-convert>=1.1.0'
     ],
     url='https://github.com/mrstephenneal/ImgConverter',
