@@ -1,2 +1,2 @@
-psdconvert>=0.1.6
+psdconvert>=0.1.7
 pdfconduit-convert>=1.1.0

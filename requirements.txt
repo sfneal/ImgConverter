@@ -8,8 +8,8 @@ pdfconduit-modify==1.0.0
 pdfconduit-utils==1.0.2
 pdfrw==0.4
 Pillow==5.3.0
-psd-tools2==1.7.18
-psdconvert==0.1.6
+psd-tools3==1.8.1
+psdconvert==0.1.7
 PyBundle==1.0.5
 PyMuPDF==1.13.20
 PyPDF3==1.0.1
