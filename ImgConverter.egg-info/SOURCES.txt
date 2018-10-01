@@ -2,7 +2,7 @@ MANIFEST.in
 setup.py
 ImgConverter/__init__.py
 ImgConverter/_version.py
-ImgConverter/converter.py
+ImgConverter/imgconverter.py
 ImgConverter.egg-info/PKG-INFO
 ImgConverter.egg-info/SOURCES.txt
 ImgConverter.egg-info/dependency_links.txt
