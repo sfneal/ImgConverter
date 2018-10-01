@@ -1,7 +1,7 @@
 import unittest
 import os
 import shutil
-from ImgConverter.converter import Convert2Image
+from ImgConverter.imgconverter import Convert2Image
 
 
 directory = os.path.join(os.path.dirname(__file__), 'data')

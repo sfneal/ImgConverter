@@ -19,6 +19,7 @@ def jpg2png(source, destination):
 
 class Convert2Image:
     def __init__(self, dst_directory=None, convert_to='png', ignored_types=None):
+        """Convert a variety of file formats to images."""
         self._dst_dir = dst_directory
         self._dst_ext = '.' + convert_to.strip('.')
         self.ignored_types = self._set_ignored_types(ignored_types)
