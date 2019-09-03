@@ -17,6 +17,20 @@ def jpg2png(source, destination):
     return destination
 
 
+def png2jpg(source, destination):
+    """Convert a JPG image to a PNG image."""
+    assert Path(source).suffix == '.png'
+    assert Path(destination).suffix == '.jpg'
+
+    with Image.open(source) as png:
+        # Create an 'RGB' image with the same size as the PNG
+        im = Image.new("RGB", png.size, (255, 255, 255))
+
+        im.paste(png, png)
+        im.save(destination)
+    return destination
+
+
 class Convert2Image:
     def __init__(self, dst_directory=None, convert_to='png', ignored_types=None):
         """Convert a variety of file formats to images."""
@@ -98,6 +112,10 @@ class Convert2Image:
         if src_ext == self._dst_ext:
             return [source]
 
+        # PSD ---> PNG --> JPG
+        # elif src_ext == '.psd' and src_ext not in self.ignored_types and self.target_extension == '.jpg':
+        #     return [ConvertPSD(source).save(self._get_target(src_name, '.png'))]
+
         # PSD ---> PNG
         elif src_ext == '.psd' and src_ext not in self.ignored_types:
             return [ConvertPSD(source).save(target)]
@@ -109,6 +127,10 @@ class Convert2Image:
         # JPG ---> PNG
         elif src_ext == '.jpg' and src_ext not in self.ignored_types:
             return [jpg2png(source, target)]
+
+        # JPG ---> PNG
+        elif src_ext == '.png' and src_ext not in self.ignored_types:
+            return [png2jpg(source, target)]
 
         # Cannot convert this file type
         else:
