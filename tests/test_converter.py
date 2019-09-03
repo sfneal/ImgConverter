@@ -4,7 +4,7 @@ import shutil
 
 from pathlib import Path
 
-from ImgConverter.imgconverter import Convert2Image
+from ImgConverter.convert import Convert2Image
 
 
 directory = os.path.join(os.path.dirname(__file__), 'data')

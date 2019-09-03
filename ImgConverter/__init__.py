@@ -1,4 +1,4 @@
-from ImgConverter.imgconverter import Convert2Image
+from ImgConverter.convert import Convert2Image
 
 
 __all__ = ['Convert2Image']
