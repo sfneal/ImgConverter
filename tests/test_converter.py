@@ -1,6 +1,7 @@
 import unittest
 import os
 import shutil
+from looptools import Timer
 
 from pathlib import Path
 
@@ -21,7 +22,8 @@ class TestConverter(unittest.TestCase):
     def _validate_img(self, img, target_format):
         self.assertTrue(os.path.exists(img))
         self.assertEqual('.' + target_format, Path(img).suffix)
-        
+
+    @Timer.decorator
     def test_png_to_jpg(self):
         png = os.path.join(directory, 'png.png')
         target_format = 'jpg'
@@ -29,7 +31,8 @@ class TestConverter(unittest.TestCase):
 
         for img in new_imgs:
             self._validate_img(img, target_format)
-            
+
+    @Timer.decorator
     def test_pdf_to_jpg(self):
         source = os.path.join(directory, 'pdf.pdf')
         target_format = 'jpg'
@@ -38,6 +41,7 @@ class TestConverter(unittest.TestCase):
         for img in new_imgs:
             self._validate_img(img, target_format)
 
+    @Timer.decorator
     def test_psd_to_png(self):
         source = os.path.join(directory, 'psd.psd')
         target_format = 'png'
@@ -46,6 +50,7 @@ class TestConverter(unittest.TestCase):
         for img in new_imgs:
             self._validate_img(img, target_format)
 
+    @Timer.decorator
     def test_psd_to_jpg(self):
         source = os.path.join(directory, 'psd.psd')
         target_format = 'jpg'
@@ -54,6 +59,7 @@ class TestConverter(unittest.TestCase):
         for img in new_imgs:
             self._validate_img(img, target_format)
 
+    @Timer.decorator
     def test_jpg_to_png(self):
         source = os.path.join(directory, 'jpg.jpg')
         target_format = 'png'
