@@ -22,10 +22,10 @@ class TestConverter(unittest.TestCase):
         self.assertTrue(os.path.exists(img))
         self.assertEqual('.' + target_format, Path(img).suffix)
         
-    def test_pdf_to_png(self):
-        pdf = os.path.join(directory, 'pdf.pdf')
-        target_format = 'png'
-        new_imgs = Convert2Image(destination, target_format).convert(pdf)
+    def test_png_to_jpg(self):
+        png = os.path.join(directory, 'png.png')
+        target_format = 'jpg'
+        new_imgs = Convert2Image(destination, target_format).convert(png)
 
         for img in new_imgs:
             self._validate_img(img, target_format)

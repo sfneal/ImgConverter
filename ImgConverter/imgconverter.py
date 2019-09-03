@@ -113,8 +113,8 @@ class Convert2Image:
             return [source]
 
         # PSD ---> PNG --> JPG
-        # elif src_ext == '.psd' and src_ext not in self.ignored_types and self.target_extension == '.jpg':
-        #     return [ConvertPSD(source).save(self._get_target(src_name, '.png'))]
+        elif src_ext == '.psd' and src_ext not in self.ignored_types and self.target_extension == '.jpg':
+            return [png2jpg(ConvertPSD(source).save(self._get_target(src_name, '.png')), target)]
 
         # PSD ---> PNG
         elif src_ext == '.psd' and src_ext not in self.ignored_types:
