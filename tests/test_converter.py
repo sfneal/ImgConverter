@@ -1,68 +1,58 @@
 import unittest
 import os
 import shutil
+
+from pathlib import Path
+
 from ImgConverter.imgconverter import Convert2Image
 
 
 directory = os.path.join(os.path.dirname(__file__), 'data')
 destination = os.path.join(directory, 'converted')
-if os.path.exists(destination):
-    shutil.rmtree(destination)
-os.mkdir(destination)
 
 
 class TestConverter(unittest.TestCase):
-    def test_pdf2png(self):
-        pdf = os.path.join(directory, 'pdf.pdf')
-        new_imgs = Convert2Image(destination).convert(pdf)
-
-        for img in new_imgs:
-            self.assertTrue(os.path.exists(img))
-
-    def test_psd2png(self):
-        psd = os.path.join(directory, 'psd.psd')
-        new_psds = Convert2Image(destination).convert(psd)
-
-        for img in new_psds:
-            self.assertTrue(os.path.exists(img))
-
-    def test_jpg2png(self):
-        jpg = os.path.join(directory, 'jpg.jpg')
-        new_jpgs = Convert2Image(destination).convert(jpg)
-
-        for img in new_jpgs:
-            self.assertTrue(os.path.exists(img))
-
-
-class TestConverterTemp(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.convert = Convert2Image()
+        if os.path.exists(destination):
+            shutil.rmtree(destination)
+        os.mkdir(destination)
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.convert.cleanup()
-
-    def test_pdf2png_temp(self):
+    def _validate_img(self, img, target_format):
+        self.assertTrue(os.path.exists(img))
+        self.assertEqual('.' + target_format, Path(img).suffix)
+        
+    def test_pdf_to_png(self):
         pdf = os.path.join(directory, 'pdf.pdf')
-        new_imgs = self.convert.convert(pdf)
+        target_format = 'png'
+        new_imgs = Convert2Image(destination, target_format).convert(pdf)
 
         for img in new_imgs:
-            self.assertTrue(os.path.exists(img))
+            self._validate_img(img, target_format)
+            
+    def test_pdf_to_jpg(self):
+        source = os.path.join(directory, 'pdf.pdf')
+        target_format = 'jpg'
+        new_imgs = Convert2Image(destination, target_format).convert(source)
 
-    def test_psd2png_temp(self):
-        psd = os.path.join(directory, 'psd.psd')
-        new_psds = self.convert.convert(psd)
+        for img in new_imgs:
+            self._validate_img(img, target_format)
 
-        for img in new_psds:
-            self.assertTrue(os.path.exists(img))
+    def test_psd_to_png(self):
+        source = os.path.join(directory, 'psd.psd')
+        target_format = 'png'
+        new_imgs = Convert2Image(destination, target_format).convert(source)
 
-    def test_jpg2png_temp(self):
-        jpg = os.path.join(directory, 'jpg.jpg')
-        new_jpgs = self.convert.convert(jpg)
+        for img in new_imgs:
+            self._validate_img(img, target_format)
 
-        for img in new_jpgs:
-            self.assertTrue(os.path.exists(img))
+    def test_jpg_to_png(self):
+        source = os.path.join(directory, 'jpg.jpg')
+        target_format = 'png'
+        new_imgs = Convert2Image(destination, target_format).convert(source)
+
+        for img in new_imgs:
+            self._validate_img(img, target_format)
 
 
 if __name__ == '__main__':
