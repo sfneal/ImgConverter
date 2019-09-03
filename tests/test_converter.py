@@ -46,6 +46,14 @@ class TestConverter(unittest.TestCase):
         for img in new_imgs:
             self._validate_img(img, target_format)
 
+    def test_psd_to_jpg(self):
+        source = os.path.join(directory, 'psd.psd')
+        target_format = 'jpg'
+        new_imgs = Convert2Image(destination, target_format).convert(source)
+
+        for img in new_imgs:
+            self._validate_img(img, target_format)
+
     def test_jpg_to_png(self):
         source = os.path.join(directory, 'jpg.jpg')
         target_format = 'png'
