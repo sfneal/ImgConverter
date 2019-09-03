@@ -28,6 +28,14 @@ class Convert2Image:
     def cleanup(self):
         rmtree(self.tempdir)
 
+    @property
+    def target_extension(self):
+        return self._dst_ext
+
+    @property
+    def target_destination(self):
+        return self._dst_dir
+
     @staticmethod
     def _set_ignored_types(ignored_types):
         """Create list of ignored file types"""
@@ -50,22 +58,23 @@ class Convert2Image:
         # Source file name without extension and file extension tup
         return s.stem, s.suffix
 
-    def _get_target(self, src_name):
+    def _get_target(self, src_name, extension=None):
         """
         Retrieve the target file_path
 
         Returns either a tempfile in a tempdir or a concatenated
         file path in the same directory as the source file
         """
-        if self._dst_dir and os.path.isdir(self._dst_dir):
+        extension = extension if extension else self.target_extension
+        if self.target_destination and os.path.isdir(self.target_destination):
             # Concatenate destination
-            return os.path.join(self._dst_dir, src_name + self._dst_ext)
+            return os.path.join(self.target_destination, src_name + extension)
 
         else:
             # Create a temporary destination
             if self.tempdir is None:
                 self.tempdir = mkdtemp()
-            return os.path.join(self.tempdir, src_name + self._dst_ext)
+            return os.path.join(self.tempdir, src_name + extension)
 
     def get_output(self, source):
         """
